@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 
 # definere video kameraet som et camera objekt
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 # checker om kameraet er aktiveret og tændt
 # Hvis den ikke kan finde/starte kameraet giver den os en fejl og lukker programmet
 if not cap.isOpened():
@@ -11,7 +11,7 @@ if not cap.isOpened():
 
 # importerer vi et deep neural network
 path_model = "DNN/"
-model_name = "model-small.onnx"
+model_name = "model-Small.onnx"
 
 # Definere deep neural networket 
 model = cv.dnn.readNet(path_model + model_name)
