@@ -41,7 +41,7 @@ while (cap.isOpened()):
 
     output = cv.normalize(output, None, 0, 1, cv.NORM_MINMAX, dtype=cv.CV_32F)
     
-    hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
+    hsv = cv.cvtColor(output, cv.COLOR_BGR2HSV)
 
     lower_bound = np.array([0, 0, 0], dtype=np.uint8)   
     upper_bound = np.array([0, 0, 255], dtype=np.uint8)
@@ -55,7 +55,6 @@ while (cap.isOpened()):
 
     cv.imshow('Camera', frame)
     cv.imshow('Result', result)
-    cv.imshow('zsdfg', mask)
     cv.imshow('Depth map', output)
 
     # the 'q' button is set as the
