@@ -14,7 +14,7 @@ path_model = "DNN/"
 model_name = "model-Small.onnx"
 
 # Definere deep neural networket
-model = cv.dnn.readNetFromCaffe(path_model + model_name)
+model = cv.dnn.readNet(path_model + model_name)
 
 # set backed and target to CUDA to use GPU
 model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
