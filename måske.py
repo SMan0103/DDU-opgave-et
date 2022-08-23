@@ -21,6 +21,10 @@ if (model.empty()):
     print("Cannot load network")
     exit()
 
+    # set backed and target to CUDA to use GPU
+    model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
+    model.setPreferableTarget(cv.dnn.DNN_TARGET_CUDA)
+
 
 
 # laver en loop der kører mens kameraet er aktiveret
