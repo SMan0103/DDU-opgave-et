@@ -13,8 +13,8 @@ if not cap.isOpened():
 path_model = "DNN/"
 model_name = "model-Small.onnx"
 
-# Definere deep neural networket 
-model = cv.dnn.readNet(path_model + model_name)
+# Definere deep neural networket
+model = cv.dnn.readNetFromCaffe(path_model + model_name)
 
 # set backed and target to CUDA to use GPU
 model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
@@ -24,8 +24,6 @@ model.setPreferableTarget(cv.dnn.DNN_TARGET_CUDA)
 if (model.empty()):
     print("Cannot load network")
     exit()
-
-
 
 # laver en loop der kører mens kameraet er aktiveret
 while (cap.isOpened()):
@@ -44,10 +42,10 @@ while (cap.isOpened()):
     output = cv.resize(output, (imgWidth, imgHeight))
 
     output = cv.normalize(output, None, 0, 1, cv.NORM_MINMAX, dtype=cv.CV_32F)
-    
+
     hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
-    lower_bound = np.array([0, 0, 0], dtype=np.uint8)   
+    lower_bound = np.array([0, 0, 0], dtype=np.uint8)
     upper_bound = np.array([0, 0, 255], dtype=np.uint8)
 
     mask = cv.inRange(hsv, lower_bound, upper_bound)
