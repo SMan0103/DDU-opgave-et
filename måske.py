@@ -14,7 +14,7 @@ path_model = "DNN/"
 model_name = "model-Small.onnx"
 
 # Definere deep neural networket 
-model = cv.dnn.readNet(path_model + model_name)
+model = cv.dnn.readNetFromCaffe(path_model + model_name)
 
 # checker om vi kan indlæse deep neural networket
 if (model.empty()):
@@ -24,7 +24,7 @@ if (model.empty()):
     # set backed and target to CUDA to use GPU
     model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
     model.setPreferableTarget(cv.dnn.DNN_TARGET_CUDA)
-
+ 
 
 
 # laver en loop der kører mens kameraet er aktiveret
