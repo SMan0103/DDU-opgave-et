@@ -16,14 +16,14 @@ model_name = "model-Small.onnx"
 # Definere deep neural networket 
 model = cv.dnn.readNet(path_model + model_name)
 
+# set backed and target to CUDA to use GPU
+model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
+model.setPreferableTarget(cv.dnn.DNN_TARGET_CUDA)
+
 # checker om vi kan indlæse deep neural networket
 if (model.empty()):
     print("Cannot load network")
     exit()
-
-    # set backed and target to CUDA to use GPU
-    model.setPreferableBackend(cv.dnn.DNN_BACKEND_CUDA)
-    model.setPreferableTarget(cv.dnn.DNN_TARGET_CUDA)
 
 
 
