@@ -19,4 +19,4 @@ def getY(c):
     return screen_y * c
 
 def move(x, y):
-    mouse.move(getX(x), getY(y)) # TODO fix inverted x axis
+    mouse.move(getX(x), getY(y))
