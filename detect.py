@@ -22,6 +22,8 @@ with mp_hands.Hands(
     imgHeight, imgWidth, channels = image.shape
     image = cv2.resize(image, (imgWidth, imgHeight)) # Resize the image to the size of the camera input
     
+    image = cv2.flip(image, 1) # Flip the image horizontally to fix inverted x-axis
+
     image.flags.writeable = False # Mark the image as not writeable to improve performance
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # Convert the image from BGR to RGB
     results = hands.process(image) # Process the image with the hands detector
@@ -35,10 +37,14 @@ with mp_hands.Hands(
         thumb_tip = results.multi_hand_landmarks[0].landmark[4] # Get the thumb tip
         index_tip = results.multi_hand_landmarks[0].landmark[8] # Get the index finger tip
         
-        #print("Thumb tip x: ", thumb_tip.y)
-        #print("Index tip x: ", index_tip.y)
+        print("Thumb tip: ", thumb_tip)
+        print("Index tip: ", index_tip)
 
-        mc.move(index_tip.x, index_tip.y) # Move the mouse to the index tip
+        if (thumb_tip.y - index_tip.y) <= 0.07: # If the thumb and index finger are close together
+          print("Click")
+          mc.click()
+
+        mc.move(thumb_tip.x, thumb_tip.y) # Move the mouse to the thumb tip
 
         mp_drawing.draw_landmarks(
             image,
