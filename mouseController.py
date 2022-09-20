@@ -30,7 +30,20 @@ def getY(c): # Get the y coordinate
 
 def move(x, y):
     comX, comY = getCommon(x, y)
-    mouse.move(getX(comX), getY(comY))
+    offsetX = 0
+    offsetY = 0
+    if (getX(comX) < screen_x/2-screen_x/4):
+        mouse.move(getX(comX)-offsetX, getY(comY))
+    elif (getX(comX) > screen_x/2+screen_x/4) :
+        mouse.move(getX(comX)+screen_x/20, getY(comY))
+    elif (getY(comY) < screen_y/2-screen_y/4):
+        mouse.move(getX(comX), getY(comY)-screen_y/20)
+    elif (getY(comY) > screen_y/2+screen_y/4):
+        mouse.move(getX(comX), getY(comY)+screen_y/20)
+    else:
+        mouse.move(getX(comX), getY(comY))
+                
+    
 
 def click(): # Click the mouse
     mouse.click()

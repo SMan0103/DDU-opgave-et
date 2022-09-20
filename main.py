@@ -11,7 +11,7 @@ mp_hands = mp.solutions.hands
 cap = cv2.VideoCapture(0) # 0 is the id of the built-in camera
 
 with mp_hands.Hands(
-    max_num_hands=2, # the maximum number of hands we want to track
+    max_num_hands=1, # the maximum number of hands we want to track
     model_complexity=1, # 0 is the lowest complexity, 1 is the highest complexity
     min_detection_confidence=0.5, # 0 is the lowest confidence, 1 is the highest confidence
     min_tracking_confidence=0.5) as hands: # 0 is the lowest confidence, 1 is the highest confidence
@@ -56,9 +56,9 @@ with mp_hands.Hands(
                 index_tip = results.multi_hand_landmarks[0].landmark[8]
 
                 # if thumb and index finger are close together
-                if (thumb_tip.y - index_tip.y) <= 0.07:
+#                if (thumb_tip.y - index_tip.y) <= 0.07:
                     # click
-                    mc.click()
+#                    mc.click()
 
                 # move mouse to thumb tip
                 mc.move(thumb_tip.x, thumb_tip.y)
