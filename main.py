@@ -1,4 +1,4 @@
-import cv2
+import cv2 
 import mediapipe as mp
 import mouseController as mc
 
@@ -24,7 +24,7 @@ with mp_hands.Hands(
             continue
         
         # get image dimensions
-        imgHeight, imgWidth, channels = image.shape
+        imgHeight, imgWidth, _ = image.shape
 
         # resize image to webcam dimensions
         image = cv2.resize(image, (imgWidth, imgHeight))
