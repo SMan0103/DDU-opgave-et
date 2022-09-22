@@ -36,17 +36,19 @@ def move(x, y):
     offsetX2 = (getX(comX))*5-(getX(comX))
     offsetY2 = (getY(comY))*5-(getY(comY))
     
-    
-    if (getX(comX) < lastX):
-        mouse.move(getX(comX)-offsetX, getY(comY))
-    else:
-        mouse.move(getX(comX)+offsetX, getY(comY))
+    try:
+        if (getX(comX) < lastX):
+            mouse.move(getX(comX)-offsetX, getY(comY))
+        else:
+            mouse.move(getX(comX)+offsetX, getY(comY))
 
-    if (getY(comY) < lastY):
-        mouse.move(getX(comX), getY(comY)-offsetY)
-    else:
-        mouse.move(getX(comX), getY(comY)+offsetY)
-
+        if (getY(comY) < lastY):
+            mouse.move(getX(comX), getY(comY)-offsetY)
+        else:
+            mouse.move(getX(comX), getY(comY)+offsetY)
+    except:
+        mouse.move(getX(comX), getY(comY))
+        
     lastX = getX(comX)
     lastY = getY(comY)
 
