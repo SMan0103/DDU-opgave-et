@@ -8,7 +8,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 # get webcam
-cap = cv2.VideoCapture(0) # 0 is the id of the built-in camera
+cap = cv2.VideoCapture(1) # 0 is the id of the built-in camera
 
 with mp_hands.Hands(
     max_num_hands=1, # the maximum number of hands we want to track

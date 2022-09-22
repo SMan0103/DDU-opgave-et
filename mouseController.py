@@ -7,6 +7,7 @@ screen_y = si.get_monitors()[0].height
 common_x = [0, 0, 0] # List of x coordinates
 common_y = [0, 0, 0] # List of y coordinates
 
+
 def getCommon(x, y): # Get the common x and y coordinates
     common_x.append(x) # Add the x coordinate to the list
     common_y.append(y) # Add the y coordinate to the list
@@ -32,18 +33,24 @@ def move(x, y):
     comX, comY = getCommon(x, y)
     offsetX = (screen_x/20)
     offsetY = (screen_y/20)
-    offsetX2 = (getX(comX))**1.01
-    offsetY2 = (getY(comY))**1.01
-    if (getX(comX) < screen_x/2-screen_x/4):
+    offsetX2 = (getX(comX))*5-(getX(comX))
+    offsetY2 = (getY(comY))*5-(getY(comY))
+    
+    
+    if (getX(comX) < lastX):
         mouse.move(getX(comX)-offsetX, getY(comY))
-    elif (getX(comX) > screen_x/2+screen_x/4) :
-        mouse.move(getX(comX)+offsetX, getY(comY))
-    elif (getY(comY) < screen_y/2-screen_y/4):
-        mouse.move(getX(comX), getY(comY)-offsetY)
-    elif (getY(comY) > screen_y/2+screen_y/4):
-        mouse.move(getX(comX), getY(comY)+offsetY)
     else:
-        mouse.move(getX(comX), getY(comY))
+        mouse.move(getX(comX)+offsetX, getY(comY))
+
+    if (getY(comY) < lastY):
+        mouse.move(getX(comX), getY(comY)-offsetY)
+    else:
+        mouse.move(getX(comX), getY(comY)+offsetY)
+
+    lastX = getX(comX)
+    lastY = getY(comY)
+
+    
                 
     
 
