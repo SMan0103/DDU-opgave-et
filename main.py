@@ -1,4 +1,4 @@
-import cv2 
+import cv2
 import mediapipe as mp
 import mouseController as mc
 
@@ -8,13 +8,13 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
 # get webcam
-cap = cv2.VideoCapture(1) # 0 is the id of the built-in camera
+cap = cv2.VideoCapture(0) # 0 is the id of the built-in camera
 
 with mp_hands.Hands(
-    max_num_hands=1, # the maximum number of hands we want to track
+    max_num_hands=2, # the maximum number of hands we want to track
     model_complexity=1, # 0 is the lowest complexity, 1 is the highest complexity
-    min_detection_confidence=0.9, # 0 is the lowest confidence, 1 is the highest confidence
-    min_tracking_confidence=0.9) as hands: # 0 is the lowest confidence, 1 is the highest confidence
+    min_detection_confidence=0.5, # 0 is the lowest confidence, 1 is the highest confidence
+    min_tracking_confidence=0.5) as hands: # 0 is the lowest confidence, 1 is the highest confidence
 
     # while webcam is open
     while cap.isOpened():
@@ -24,7 +24,7 @@ with mp_hands.Hands(
             continue
         
         # get image dimensions
-        imgHeight, imgWidth, _ = image.shape
+        imgHeight, imgWidth, channels = image.shape
 
         # resize image to webcam dimensions
         image = cv2.resize(image, (imgWidth, imgHeight))
@@ -56,9 +56,9 @@ with mp_hands.Hands(
                 index_tip = results.multi_hand_landmarks[0].landmark[8]
 
                 # if thumb and index finger are close together
-#                if (thumb_tip.y - index_tip.y) <= 0.07:
+                if (thumb_tip.y - index_tip.y) <= 0.07:
                     # click
-#                    mc.click()
+                    mc.click()
 
                 # move mouse to thumb tip
                 mc.move(thumb_tip.x, thumb_tip.y)
