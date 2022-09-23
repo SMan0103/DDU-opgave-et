@@ -1,8 +1,8 @@
 import mouse
 import screeninfo as si
 
-screen_x = si.get_monitors()[0].width
-screen_y = si.get_monitors()[0].height
+screen_x = (si.get_monitors()[0].width) # Get the screen width
+screen_y = (si.get_monitors()[0].height) # Get the screen height
 
 common_x = [0, 0, 0] # List of x coordinates
 common_y = [0, 0, 0] # List of y coordinates
