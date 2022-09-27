@@ -48,7 +48,7 @@ with mp_hands.Hands(
         image = cv2.resize(image, (imgWidth, imgHeight))
 
         # flip image horizontally to fix inverted x-axis
-#        image = cv2.flip(image, 1)
+        image = cv2.flip(image, 1)
 
         # mark image as not writeable to improve performance
         image.flags.writeable = False

@@ -15,11 +15,11 @@ def getCommon(x, y): # Get the common x and y coordinates
     return (sum(common_x) / len(common_x), sum(common_y) / len(common_y)) # Return the average of the x and y coordinates
 
 def getX(c): # Get the x coordinate
-    c = (((c*2-1)*1.8)(+1)/2)
+    c = ((((c*2-1)*1.8)+1)/2)
     return screen_x * c
 
 def getY(c): # Get the y coordinate
-    c = (((c*2-1)*1.8)(+1)/2)
+    c = ((((c*2-1)*1.8)+1)/2)
     return screen_y * c
 
 def move(x, y):
